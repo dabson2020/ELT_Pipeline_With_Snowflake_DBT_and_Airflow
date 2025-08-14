@@ -33,8 +33,8 @@ Calculate the top 10 customers by revenue and order count.
 
 Store the results in a consumption layer for analytics and reporting.
 
-Data Architecture
-Snowflake Schemas
+### Data Architecture
+#### - Snowflake Schemas
 
 landing – Raw ingested data from source systems (CSV, API, etc.).
 
@@ -135,7 +135,7 @@ Folder Structure
 ├── dbt_project.yml         # dbt project configuration
 ├── models/
 │   ├── staging/            # Staging models
-│   ├── marts/              # Fact & dimension models
+│   ├── Processing/         # Fact & dimension models
 │   ├── consumption/        # Business logic models
 │   └── snapshots/          # SCD2 snapshots
 ├── macros/                 # Reusable SQL & Jinja macros
@@ -143,26 +143,9 @@ Folder Structure
 ├── tests/                  # Singular test SQL files
 └── source.yml              # Source table definitions
 
-Data Flow Diagram
-flowchart LR
-    subgraph Landing Schema
-    A[Customers] -->|Load| S1[customer_stg]
-    B[Orders] -->|Load| S2[order_stg]
-    C[OrderItems] -->|Load| S3[orderitems_stg]
-    D[Stores] -->|Load| S4[store_stg]
-    E[Employees] -->|Load| S5[employee_stg]
-    F[Products] -->|Load| S6[product_stg]
-    end
+#### Lineage
+![alt text](image.png)
 
-    subgraph Processing Schema
-    S2 --> F1[order_facts]
-    S3 --> F1
-    end
-
-    subgraph Consumption Schema
-    F1 --> BR1[Top 10 Customers by Revenue]
-    F1 --> BR2[Top 10 Customers by Orders]
-    end
 
 Key Benefits of This Pipeline
 
