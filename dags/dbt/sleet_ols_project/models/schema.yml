@@ -1,0 +1,39 @@
+
+version: 2
+
+models:
+  - name: orderitems_stg
+    description: This model contains the staging data for order items.
+    columns:
+      - name: orderitem_id
+        description: Unique identifier for each order item.
+        tests:
+          - not_null
+      - name: unit_price
+        description: Price of the item in the order.
+        tests:
+          - assert_positive
+      - name: quantity
+        description: Quantity of the item ordered.
+        tests:
+          - not_null
+          - assert_positive
+  
+  - name: orders_stg
+    description: This model contains the staging data for orders.
+    columns:
+      - name: statuscd
+        description: "{{ doc('statuscd') }}"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['01', '02', '03']
+  - name: customers_stg
+    description: This model contains the staging data for customers.
+    columns:
+      - name: customerid
+        description: Unique identifier for each customer.
+        tests:
+          - not_null
+          - unique
+      

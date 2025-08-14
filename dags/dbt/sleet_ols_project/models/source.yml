@@ -1,0 +1,65 @@
+sources:
+  - name: landing
+    database: sleet_OMS
+    schema: LANDING
+  
+    tables:
+      - name: customers
+        description: This table contains customer data.
+        columns:
+          - name: customerid
+            tests:
+            - unique
+            - not_null
+          - name: email
+            description: Email address of the customer.
+            tests:
+              - dbt_utils.not_empty_string
+           
+      - name: orders
+        description: This table contains order data with relationships to customers.
+        columns:
+          - name: orderid
+            tests:
+              - unique
+              - not_null
+          - name: CUSTOMERID
+            description: Foreign key to the customers table.
+            tests:
+              - relationships:
+                  to: source('landing', 'customers')
+                  field: CUSTOMERID
+            
+          
+      - name: employees
+        columns:
+          - name: EMPLOYEEID
+            tests:
+              - unique
+              - not_null
+      - name: orderitems
+        columns:
+          - name: orderitemid
+            tests:
+              - not_null
+          - name: ORDERID
+            tests:
+              - relationships:
+                  to: source('landing', 'orders')
+                  field: ORDERID
+
+  - name: training
+    database: sleet_OMS
+    schema: training
+    tables:
+    - name: sales_india
+      description: This table contains sales data for India.
+    - name: sales_uk
+      description: This table contains sales data for the UK.
+    - name: sales_us        
+          
+            
+      
+         
+           
+    
