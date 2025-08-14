@@ -105,7 +105,28 @@ Generic tests – Check for not_null, unique, and accepted_values.
 
 Snapshots – Implements Slowly Changing Dimension Type 2 (SCD2) to track historical changes in customer data.
 
-Orchestration with Airflow
+
+
+Future scope: Implement Azure DevOps/GitHub Actions for automated deployment on commit to main.
+
+Folder Structure
+.
+├── dags/                   # Airflow DAG files
+├── dbt_project.yml         # dbt project configuration
+├── models/
+│   ├── staging/            # Staging models
+│   ├── Processing/         # Fact & dimension models
+│   ├── consumption/        # Business logic models
+│   └── snapshots/          # SCD2 snapshots
+├── macros/                 # Reusable SQL & Jinja macros
+├── seeds/                  # Optional static datasets
+├── tests/                  # Singular test SQL files
+└── source.yml              # Source table definitions
+
+#### Lineage
+![alt text](../dbt_project.png)
+
+### Orchestration with Airflow
 
 Airflow DAG schedules dbt runs to execute transformations daily.
 
@@ -126,25 +147,6 @@ Version Control & CI/CD
 GitHub repository stores dbt project code, including models, macros, and tests.
 
 Branching strategy ensures feature development is merged into main only after review.
-
-Future scope: Implement Azure DevOps/GitHub Actions for automated deployment on commit to main.
-
-Folder Structure
-.
-├── dags/                   # Airflow DAG files
-├── dbt_project.yml         # dbt project configuration
-├── models/
-│   ├── staging/            # Staging models
-│   ├── Processing/         # Fact & dimension models
-│   ├── consumption/        # Business logic models
-│   └── snapshots/          # SCD2 snapshots
-├── macros/                 # Reusable SQL & Jinja macros
-├── seeds/                  # Optional static datasets
-├── tests/                  # Singular test SQL files
-└── source.yml              # Source table definitions
-
-#### Lineage
-![alt text](image.png)
 
 
 Key Benefits of This Pipeline
