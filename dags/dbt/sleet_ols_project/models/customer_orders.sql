@@ -1,3 +1,8 @@
+{{config(
+    materialized='table',
+    schema='processing'
+)}}
+
 with cte_customerorder AS (
 select c.customer_id AS customer_id,
     customer_name, 

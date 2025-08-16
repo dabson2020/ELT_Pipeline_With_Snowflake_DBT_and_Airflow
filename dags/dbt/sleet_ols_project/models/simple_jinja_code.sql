@@ -1,4 +1,4 @@
-{# This is a Jinja code generated for select statement#}
+{# This is a Jinga code genertaed for select statement#}
 {% set max_number = 10 %}
 {% for i in range(max_number) %}
     SELECT {{ i }} AS number

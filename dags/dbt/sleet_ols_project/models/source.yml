@@ -48,6 +48,19 @@ sources:
                   to: source('landing', 'orders')
                   field: ORDERID
 
+      - name: stores
+        description: This table contains store data.
+        columns:
+          - name: storeid
+      
+      - name: products
+        description: This table contains product data.
+        columns:
+          - name: productid
+      
+           
+      
+
   - name: training
     database: sleet_OMS
     schema: training

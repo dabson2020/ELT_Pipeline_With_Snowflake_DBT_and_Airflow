@@ -1,7 +1,7 @@
 
 {{config(
     materialized='view',
-    schema='Processing'
+    schema='landing'
 )}}
 select customerid customer_id,
        CONCAT(firstname,' ',lastname) customer_name,

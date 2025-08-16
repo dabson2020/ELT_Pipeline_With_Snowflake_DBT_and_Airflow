@@ -1,4 +1,3 @@
-
 version: 2
 
 models:
@@ -18,7 +17,7 @@ models:
         tests:
           - not_null
           - assert_positive
-  
+
   - name: orders_stg
     description: This model contains the staging data for orders.
     columns:
@@ -27,7 +26,7 @@ models:
         tests:
           - not_null
           - accepted_values:
-              values: ['01', '02', '03']
+              values: [ '01', '02', '03' ]
   - name: customers_stg
     description: This model contains the staging data for customers.
     columns:
@@ -36,4 +35,5 @@ models:
         tests:
           - not_null
           - unique
-      
+  - name: product_performance
+    description: This model computes the performance of each product which includes the revenue and total quantity sold per product.

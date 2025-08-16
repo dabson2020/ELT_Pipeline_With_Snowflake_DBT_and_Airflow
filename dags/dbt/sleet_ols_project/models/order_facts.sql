@@ -1,3 +1,8 @@
+{{config(
+    materialized='table',
+    schema='processing'
+)}}
+
 select o.order_id,
        o.order_date,
        o.customer_id,
@@ -6,6 +11,7 @@ select o.order_id,
        o.statuscd,
        o.StatusDesc,
        o.updated_at,
+       oi.product_id,
        COUNT(DISTINCT(o.order_id)) AS Order_count,
        SUM(oi.total_price) revenue
 FROM
@@ -20,6 +26,7 @@ GROUP BY o.order_id,
        o.store_id,
        o.statuscd,
        o.StatusDesc,
-       o.updated_at
+       o.updated_at,
+       oi.product_id  
 
 ORDER BY revenue DESC

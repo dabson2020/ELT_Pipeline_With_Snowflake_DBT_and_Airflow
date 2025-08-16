@@ -1,7 +1,7 @@
 
 {{config(
     materialized='view',
-    schema='Processing'
+    schema='landing'
 )}}
 select orderitemid orderitem_id,
        orderid order_id,
