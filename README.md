@@ -78,7 +78,7 @@ Transformation logic is handled by dbt, following the modular SQL approach
 - Macros: Nacros are used to encapsulate complex logic. They are reusable functions across multiple models. These we utilised to create functions that were utilized in the transformation models.
 - Jinja: These are utilized to make SQL and YAML dynamic
 
-##### a. Staging Layer (staging folder)
+##### - Staging Layer (staging folder)
 
 Each raw table in landing is transformed into a cleaned staging table with standardized column names, data types, and filters. Here, column name changes are effected and the required columns are selected for each table
 
@@ -86,7 +86,7 @@ Example:
 
 All the tables in landing were cleaned and standardized and materialized as views for the stage data. The staged data were loaded in the Landing schema.
 
-b. Processing Layer (Processing Folder)
+##### - Processing Layer (Processing Folder)
 
 order_facts table is built by joining order_stg and orderitems_stg.
 Customer_orders table is built by joinging customer_stg and orders_stg.
@@ -94,7 +94,7 @@ These tables are referenced in the consumption layer
 
 
 
-c. Business Computations
+##### - Business Computations (Consumption Layer)
 
 
 - Top 10 customers by revenue and total number of orders. The customer are segmented into "high Value', middle value and 'low value' based on the revenue generated. The high value customers are the top 20% revenue makers, low value customers are the low 20% customer.
@@ -114,12 +114,13 @@ source.yml – Defines all source tables and their relationships.
 
 Macros & Jinja – Reusable SQL logic for revenue calculation and customer ranking.
 
-Tests:
+#### Tests:
 
-Singular tests – Validate specific business rules.
+ -Singular tests – Validate specific business rules.
 
-Generic tests – Check for not_null, unique, and accepted_values. Generic test were also created to meet some business requirements. For example, Ensuring the Unit price column is less than 0. A generic test is created under Macros folder and implemented to test the column. If there is any value less than 0, the test will fail which will help to resolve thie issue
+ - Generic tests – Check for not_null, unique, and accepted_values. Generic test were also created to meet some business requirements. For example, Ensuring the Unit price column is less than 0. A generic test is created under Macros folder and implemented to test the column. If there is any value less than 0, the test will fail which will help to resolve thie issue
 
+### MATERIALIZATION
 Snapshots – Implemented Slowly Changing Dimension Type 2 (SCD2) to track historical changes in customer data. This was utilized when configuring the materialization of the table. 
 Materialization can be configured are
  - view
