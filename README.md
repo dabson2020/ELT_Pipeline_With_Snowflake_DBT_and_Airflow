@@ -123,7 +123,7 @@ Snapshots – Implements Slowly Changing Dimension Type 2 (SCD2) to track histor
 
 Future scope: Implement Azure DevOps/GitHub Actions for automated deployment on commit to main.
 
-
+![alt text](<dags/dbt/sleet_ols_project/lineage graph.png>)
 
 Orchestration with Airflow
 Airflow DAG schedules dbt runs to execute transformations daily.
