@@ -1,4 +1,7 @@
-{{config(materilized='table', schema='consumption')}}
+{{config(
+    materialized='table',
+    schema='consumption'
+)}}
 
 select p.product_id, 
        p.product_name, 
